@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Иван Питенин](https://up.htmlacademy.ru/javascript/10/user/246656).
-* Наставник: Альбина Токарчук.
+* Наставник: Альбина Токарчук (https://htmlacademy.ru/profile/id167491).
 
 ---
 
