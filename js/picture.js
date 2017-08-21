@@ -10,22 +10,37 @@ var randomLikes = function () {
   var minLikes = 1;
   var likesValue = Math.floor(Math.random() * (maxLikes - minLikes)) + minLikes;
   return likesValue;
-}
+};
 var randomComments = function () {
   var commentsValue = Math.round(Math.random());
   return picturesComments[commentsValue];
-}
+};
 var pictures = [
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments()
-	},
+  },
+  {
+    url: 'photos/',
+    likes: randomLikes(),
+    comments: randomComments(),
+  },
+  {
+    url: 'photos/',
+    likes: randomLikes(),
+    comments: randomComments(),
+  },
+  {
+    url: 'photos/',
+    likes: randomLikes(),
+    comments: randomComments(),
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
@@ -35,113 +50,98 @@ var pictures = [
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
+  },
   {
     url: 'photos/',
     likes: randomLikes(),
     comments: randomComments(),
-	},
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-	},
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-	},
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-	}
-]
+  }
+];
 var renderPictureElement = function (pictures) {
   var pictureElement = picturesTemplate.cloneNode(true);
   var pictureImg = pictureElement.querySelector('.picture img');
@@ -151,7 +151,7 @@ var renderPictureElement = function (pictures) {
   pictureComments.textContent = pictures.comments;
   pictureLikes.textContent = pictures.likes;
   return pictureElement;
-}
+};
 var renderGalleryItem = function (pictures) {
   var galleryElement = picturesTemplate.cloneNode(true);
   var galleryImage = gallery.querySelector('.gallery-overlay-image');
@@ -161,7 +161,7 @@ var renderGalleryItem = function (pictures) {
   likesCount.textContent = pictures.likes;
   commentsCount.textContent = pictures.comments;
   return galleryElement;
-}
+};
 var fragment = document.createDocumentFragment();
 for (var i = 1; i < pictures.length; i++) {
   fragment.appendChild(renderPictureElement(pictures[i]));
