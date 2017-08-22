@@ -15,139 +15,24 @@ var randomComments = function () {
   var commentsValue = Math.round(Math.random());
   return picturesComments[commentsValue];
 };
-var pictures = [
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments()
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-	},
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
-  },
-  {
-    url: 'photos/',
-    likes: randomLikes(),
-    comments: randomComments(),
+var pictures = [];
+var picData = function () {
+  for (var i = 0; i < 25; i++) {
+    var photo = {
+      url: 'photos/' + i + '.jpg',
+      likes: randomLikes(),
+      comments: randomComments(),
+    };
+    pictures.push(photo);
   }
-];
+}
+picData();
 var renderPictureElement = function (pictures) {
   var pictureElement = picturesTemplate.cloneNode(true);
   var pictureImg = pictureElement.querySelector('.picture img');
   var pictureComments = pictureElement.querySelector('.picture-comments');
   var pictureLikes = pictureElement.querySelector('.picture-likes');
-  pictureImg.src = pictures.url + i + '.jpg';
+  pictureImg.src = pictures.url;
   pictureComments.textContent = pictures.comments;
   pictureLikes.textContent = pictures.likes;
   return pictureElement;
@@ -157,7 +42,7 @@ var renderGalleryItem = function (pictures) {
   var galleryImage = gallery.querySelector('.gallery-overlay-image');
   var likesCount = gallery.querySelector('.likes-count');
   var commentsCount = gallery.querySelector('.comments-count');
-  galleryImage.src = pictures.url + i + '.jpg';
+  galleryImage.src = pictures.url;
   likesCount.textContent = pictures.likes;
   commentsCount.textContent = pictures.comments;
   return galleryElement;
