@@ -45,11 +45,11 @@ var renderGalleryItem = function (picture) {
   commentsCount.textContent = picture.comments;
   return galleryElement;
 };
+picData();
   for (var i = 1; i < pictures.length; i++) {
     fragment.appendChild(renderPictureElement(pictures[i]));
     renderGalleryItem(pictures[i]);
 }
-picData();
 document.querySelector('.upload-form').classList.add('hidden');
 gallery.classList.remove('hidden');
 picturesList.appendChild(fragment);
