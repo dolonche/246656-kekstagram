@@ -27,7 +27,6 @@ var picData = function () {
   }
 };
 picData();
-debugger;
 var renderPictureElement = function (picture) {
   var pictureElement = picturesTemplate.cloneNode(true);
   var pictureImg = pictureElement.querySelector('.picture img');
