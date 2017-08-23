@@ -3,19 +3,19 @@ var gallery = document.querySelector('.gallery-overlay');
 var picturesList = document.querySelector('.pictures');
 var picturesTemplate = document.querySelector('#picture-template').content;
 var picturesComments = ['Все отлично!', 'В целом все плохо. Но не все'];
-document.querySelector('.upload-form').classList.add('hidden');
-gallery.classList.remove('hidden');
+var fragment = document.createDocumentFragment();
+var photoComments = ['Всё отлично!', 'В целом всё плохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.', 'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+var pictures = [];
+var randomComments = function () {
+  var commentsValue = Math.floor(Math.random() * (photoComments.length));
+  return commentsValue;
+};
 var randomLikes = function () {
   var maxLikes = 200;
   var minLikes = 1;
   var likesValue = Math.floor(Math.random() * (maxLikes - minLikes)) + minLikes;
   return likesValue;
 };
-var randomComments = function () {
-  var commentsValue = Math.round(Math.random());
-  return picturesComments[commentsValue];
-};
-var pictures = [];
 var picData = function () {
   for (var i = 0; i < 25; i++) {
     var photo = {
@@ -26,7 +26,6 @@ var picData = function () {
     pictures.push(photo);
   }
 };
-picData();
 var renderPictureElement = function (picture) {
   var pictureElement = picturesTemplate.cloneNode(true);
   var pictureImg = pictureElement.querySelector('.picture img');
@@ -47,9 +46,11 @@ var renderGalleryItem = function (picture) {
   commentsCount.textContent = picture.comments;
   return galleryElement;
 };
-var fragment = document.createDocumentFragment();
-for (var i = 1; i < pictures.length; i++) {
-  fragment.appendChild(renderPictureElement(pictures[i]));
-  renderGalleryItem(pictures[i]);
-}
+  for (var i = 1; i < pictures.length; i++) {
+    fragment.appendChild(renderPictureElement(pictures[i]));
+    renderGalleryItem(pictures[i]);
+  }
+picData();
+document.querySelector('.upload-form').classList.add('hidden');
+gallery.classList.remove('hidden');
 picturesList.appendChild(fragment);
