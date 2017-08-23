@@ -25,26 +25,27 @@ var picData = function () {
     };
     pictures.push(photo);
   }
-}
+};
 picData();
-var renderPictureElement = function (pictures) {
+debugger;
+var renderPictureElement = function (picture) {
   var pictureElement = picturesTemplate.cloneNode(true);
   var pictureImg = pictureElement.querySelector('.picture img');
   var pictureComments = pictureElement.querySelector('.picture-comments');
   var pictureLikes = pictureElement.querySelector('.picture-likes');
-  pictureImg.src = pictures.url;
-  pictureComments.textContent = pictures.comments;
-  pictureLikes.textContent = pictures.likes;
+  pictureImg.src = picture.url;
+  pictureComments.textContent = picture.comments;
+  pictureLikes.textContent = picture.likes;
   return pictureElement;
 };
-var renderGalleryItem = function (pictures) {
+var renderGalleryItem = function (picture) {
   var galleryElement = picturesTemplate.cloneNode(true);
   var galleryImage = gallery.querySelector('.gallery-overlay-image');
   var likesCount = gallery.querySelector('.likes-count');
   var commentsCount = gallery.querySelector('.comments-count');
-  galleryImage.src = pictures.url;
-  likesCount.textContent = pictures.likes;
-  commentsCount.textContent = pictures.comments;
+  galleryImage.src = picture.url;
+  likesCount.textContent = picture.likes;
+  commentsCount.textContent = picture.comments;
   return galleryElement;
 };
 var fragment = document.createDocumentFragment();
