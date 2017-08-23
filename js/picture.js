@@ -46,10 +46,10 @@ var renderGalleryItem = function (picture) {
   return galleryElement;
 };
 picData();
-  for (var i = 1; i < pictures.length; i++) {
-    fragment.appendChild(renderPictureElement(pictures[i]));
-    renderGalleryItem(pictures[i]);
-}
+for (var i = 1; i < pictures.length; i++) {
+  fragment.appendChild(renderPictureElement(pictures[i]));
+  renderGalleryItem(pictures[i]);
+  }
 document.querySelector('.upload-form').classList.add('hidden');
 gallery.classList.remove('hidden');
 picturesList.appendChild(fragment);
