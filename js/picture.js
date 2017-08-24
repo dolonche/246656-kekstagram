@@ -47,13 +47,37 @@ var renderGalleryItem = function (picture) {
 };
 
 var renderPictures = function () {
-  for (var i = 0; i < pictures.length; i++) {
+  for (var i = 1; i < pictures.length; i++) {
     fragment.appendChild(renderPictureElement(pictures[i]));
   }
 };
 picData();
 renderPictures();
-renderGalleryItem(pictures[1]);
-document.querySelector('.upload-form').classList.add('hidden');
-gallery.classList.remove('hidden');
 picturesList.appendChild(fragment);
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+var pictureItem = document.querySelectorAll('.picture');
+var galleryClose = document.querySelector('.gallery-overlay-close');
+for (var k = 0; k < pictureItem.length; k++) {
+  (function (index) {
+    pictureItem[k].addEventListener('click', function (event) {
+      console.log(k);
+      event.preventDefault();
+      gallery.classList.remove('hidden');
+      renderGalleryItem(pictures[index + 1]);
+    });
+  })(k);
+};
+galleryClose.addEventListener('click', function (evt) {
+  gallery.classList.add('hidden');
+});
+galleryClose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    gallery.classList.add('hidden');
+  }
+});
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    gallery.classList.add('hidden');
+  }
+});
