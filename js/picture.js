@@ -81,3 +81,68 @@ document.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
+var formSelect = document.querySelector('#upload-select-image');
+var uploadFile = formSelect.querySelector('#upload-file');
+var uploadFileWrapper = formSelect.querySelector('.upload-image');
+var formFrame = formSelect.querySelector('.upload-overlay');
+var formFrameCancel = formSelect.querySelector('.upload-form-cancel');
+var formDescr = formSelect.querySelector('.upload-form-description');
+var resizeImage = formSelect.querySelector('.effect-image-preview');
+var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
+var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
+var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
+var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
+var hashtag = formSelect.querySelector('.upload-form-hashtags');
+var closeFormFrame = function () {
+  formFrame.classList.add('hidden');
+  uploadFileWrapper.classList.remove('hidden');
+};
+uploadFile.addEventListener('change', function (evt) {
+  uploadFileWrapper.classList.add('hidden');
+  formFrame.classList.remove('hidden');
+});
+formFrameCancel.addEventListener('click', closeFormFrame);
+document.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    if (formDescr === document.activeElement) {
+      formFrame.classList.remove('hidden');
+    } else {
+      closeFormFrame();
+    };
+  }
+});
+resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+resizeDec.addEventListener('click', function (evt) {
+  if (parseInt(resizeValue.value) > 25) {
+    resizeValue.value = parseInt(resizeValue.value) - 25 + '%';
+    console.log(resizeImage);
+    resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+  }
+});
+resizeInc.addEventListener('click', function (evt) {
+  if (parseInt(resizeValue.value) < 100) {
+    resizeValue.value = parseInt(resizeValue.value) + 25 + '%';
+    resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+    if (parseInt(resizeValue.value) === 100) {
+      resizeImage.style.transform = 'scale(1)';
+    }
+  }
+});
+checkboxContainer.addEventListener('click', function (event) {
+  if (event.target.name === 'effect') {
+    var str = event.target.id;
+    str = str.substr(7);
+    if (resizeImage.classList.contains(str)) {
+      resizeImage.classList.remove(str);
+      resizeImage.classList.add(str);
+    } else {
+      resizeImage.classList.add(str);
+    }
+  };
+})
+hashtag.addEventListener('invalid', function (evt) {
+  hashtag.style.borderColor = 'red';
+});
+formDescr.addEventListener('invalid', function (evt) {
+  formDescr.style.borderColor = 'red';
+});
