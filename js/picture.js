@@ -93,7 +93,7 @@ var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
 var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
 var hashtag = formSelect.querySelector('.upload-form-hashtags');
-var submitButon = formSelect.querySelector('#upload-submit')
+var submitButton = formSelect.querySelector('#upload-submit');
 var closeFormFrame = function () {
   formFrame.classList.add('hidden');
   uploadFileWrapper.classList.remove('hidden');
@@ -113,19 +113,19 @@ document.addEventListener('keydown', function (evt) {
   }
 });
 var resizeImageValue = function () {
-  resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
-}
+  resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value, 10) + ')';
+};
 resizeDec.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) > 25) {
-    resizeValue.value = parseInt(resizeValue.value) - 25 + '%';
+  if (parseInt(resizeValue.value) > parseInt(25, 10)) {
+    resizeValue.value = parseInt(resizeValue.value) - parseInt(25, 10) + '%';
     resizeImageValue();
   }
 });
 resizeInc.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) < 100) {
-    resizeValue.value = parseInt(resizeValue.value) + 25 + '%';
+  if (parseInt(resizeValue.value) < parseInt(100, 10)) {
+    resizeValue.value = parseInt(resizeValue.value) + parseInt(25, 10) + '%';
     resizeImageValue();
-    if (parseInt(resizeValue.value) === 100) {
+    if (parseInt(resizeValue.value) === parseInt(100, 10)) {
       resizeImage.style.transform = 'scale(1)';
     }
   }
@@ -136,16 +136,20 @@ checkboxContainer.addEventListener('click', function (event) {
     str = str.substr(7);
     resizeImage.classList.remove(resizeImage.classList[1]);
     resizeImage.classList.add(str);
-  };
-});
-hashtag.addEventListener('invalid', function (evt) {
-  hashtag.style.borderColor = 'red';
-});
-formDescr.addEventListener('invalid', function (evt) {
-  formDescr.style.borderColor = 'red';
-});
-submitButon.addEventListener('click', function (evt) {
-  if (hashtag.validity.invalid || formDescr.validity.invalid) {
-    event.preventDefault;
   }
 });
+submitButton.addEventListener('click', function (evt) {
+  if (!formDescr.validity.valid) {
+    formDescr.style.borderColor = 'red';
+    event.preventDefault();
+  } else {
+    formSelect.submit();
+    formSelect.reset();
+  }
+});
+//hashtag.addEventListener('invalid', function (evt) {
+//  hashtag.style.borderColor = 'red';
+//});
+//formDescr.addEventListener('invalid', function (evt) {
+//  formDescr.style.borderColor = 'red';
+//});
