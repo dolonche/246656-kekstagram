@@ -93,6 +93,7 @@ var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
 var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
 var hashtag = formSelect.querySelector('.upload-form-hashtags');
+var submitButon = formSelect.querySelector('#upload-submit')
 var closeFormFrame = function () {
   formFrame.classList.add('hidden');
   uploadFileWrapper.classList.remove('hidden');
@@ -108,21 +109,22 @@ document.addEventListener('keydown', function (evt) {
       formFrame.classList.remove('hidden');
     } else {
       closeFormFrame();
-    };
+    }
   }
 });
-resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+var resizeImageValue = function () {
+  resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+}
 resizeDec.addEventListener('click', function (evt) {
   if (parseInt(resizeValue.value) > 25) {
     resizeValue.value = parseInt(resizeValue.value) - 25 + '%';
-    console.log(resizeImage);
-    resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+    resizeImageValue();
   }
 });
 resizeInc.addEventListener('click', function (evt) {
   if (parseInt(resizeValue.value) < 100) {
     resizeValue.value = parseInt(resizeValue.value) + 25 + '%';
-    resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value) + ')';
+    resizeImageValue();
     if (parseInt(resizeValue.value) === 100) {
       resizeImage.style.transform = 'scale(1)';
     }
@@ -132,17 +134,18 @@ checkboxContainer.addEventListener('click', function (event) {
   if (event.target.name === 'effect') {
     var str = event.target.id;
     str = str.substr(7);
-    if (resizeImage.classList.contains(str)) {
-      resizeImage.classList.remove(str);
-      resizeImage.classList.add(str);
-    } else {
-      resizeImage.classList.add(str);
-    }
+    resizeImage.classList.remove(resizeImage.classList[1]);
+    resizeImage.classList.add(str);
   };
-})
+});
 hashtag.addEventListener('invalid', function (evt) {
   hashtag.style.borderColor = 'red';
 });
 formDescr.addEventListener('invalid', function (evt) {
   formDescr.style.borderColor = 'red';
+});
+submitButon.addEventListener('click', function (evt) {
+  if (hashtag.validity.invalid || formDescr.validity.invalid) {
+    event.preventDefault;
+  }
 });
