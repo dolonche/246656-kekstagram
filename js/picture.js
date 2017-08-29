@@ -143,3 +143,9 @@ checkboxContainer.addEventListener('click', function (event) {
 formDescr.addEventListener('submit', function (evt) {
   formSelect.reset();
 });
+if (!formDescr.validity.valid) {
+  formDescr.style.borderColor = 'red';
+}
+if (!hashtag.validity.valid) {
+  hashtag.style.borderColor = 'red';
+}

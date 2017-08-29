@@ -778,7 +778,7 @@ input[type=radio]:checked+.upload-effect-label .upload-effect-preview {
   background-position: -84px 0;
 }
 
-.upload-form-hashtags:focus:invalid,
-.upload-form-description:focus:invalid {
+.upload-form-hashtags:invalid,
+.upload-form-description:invalid {
   border-color: red;
 }
