@@ -118,16 +118,16 @@ var resizeImageValue = function () {
   resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value, 10) + ')';
 };
 resizeDec.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) > parseInt(resizeValueStep, 10)) {
-    resizeValue.value = parseInt(resizeValue.value) - parseInt(25, 10) + '%';
+  if (parseInt(resizeValue.value, 10) > parseInt(resizeValueStep, 10)) {
+    resizeValue.value = parseInt(resizeValue.value, 10) - parseInt(25, 10) + '%';
     resizeImageValue();
   }
 });
 resizeInc.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) < parseInt(resizeValueMax, 10)) {
-    resizeValue.value = parseInt(resizeValue.value) + parseInt(resizeValueStep, 10) + '%';
+  if (parseInt(resizeValue.value, 10) < parseInt(resizeValueMax, 10)) {
+    resizeValue.value = parseInt(resizeValue.value, 10) + parseInt(resizeValueStep, 10) + '%';
     resizeImageValue();
-    if (parseInt(resizeValue.value) === parseInt(resizeValueMax, 10)) {
+    if (parseInt(resizeValue.value, 10) === parseInt(resizeValueMax, 10)) {
       resizeImage.style.transform = 'scale(1)';
     }
   }
