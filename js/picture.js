@@ -89,6 +89,8 @@ var formFrameCancel = formSelect.querySelector('.upload-form-cancel');
 var formDescr = formSelect.querySelector('.upload-form-description');
 var resizeImage = formSelect.querySelector('.effect-image-preview');
 var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
+var resizeValueStep = 25;
+var resizeValueMax = 100;
 var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
 var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
@@ -116,16 +118,16 @@ var resizeImageValue = function () {
   resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value, 10) + ')';
 };
 resizeDec.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) > parseInt(25, 10)) {
+  if (parseInt(resizeValue.value) > parseInt(resizeValueStep, 10)) {
     resizeValue.value = parseInt(resizeValue.value) - parseInt(25, 10) + '%';
     resizeImageValue();
   }
 });
 resizeInc.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value) < parseInt(100, 10)) {
-    resizeValue.value = parseInt(resizeValue.value) + parseInt(25, 10) + '%';
+  if (parseInt(resizeValue.value) < parseInt(resizeValueMax, 10)) {
+    resizeValue.value = parseInt(resizeValue.value) + parseInt(resizeValueStep, 10) + '%';
     resizeImageValue();
-    if (parseInt(resizeValue.value) === parseInt(100, 10)) {
+    if (parseInt(resizeValue.value) === parseInt(resizeValueMax, 10)) {
       resizeImage.style.transform = 'scale(1)';
     }
   }
@@ -138,18 +140,6 @@ checkboxContainer.addEventListener('click', function (event) {
     resizeImage.classList.add(str);
   }
 });
-submitButton.addEventListener('click', function (evt) {
-  if (!formDescr.validity.valid) {
-    formDescr.style.borderColor = 'red';
-    event.preventDefault();
-  } else {
-    formSelect.submit();
-    formSelect.reset();
-  }
+formDescr.addEventListener('submit', function (evt) {
+  formSelect.reset();
 });
-//hashtag.addEventListener('invalid', function (evt) {
-//  hashtag.style.borderColor = 'red';
-//});
-//formDescr.addEventListener('invalid', function (evt) {
-//  formDescr.style.borderColor = 'red';
-//});
