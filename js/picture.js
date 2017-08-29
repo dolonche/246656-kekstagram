@@ -90,8 +90,6 @@ var formDescr = formSelect.querySelector('.upload-form-description');
 var resizeImage = formSelect.querySelector('.effect-image-preview');
 var resizeControl = formSelect.querySelector('.upload-resize-controls');
 var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
-var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
-var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
 var hashtag = formSelect.querySelector('.upload-form-hashtags');
 var closeFormFrame = function () {
@@ -116,7 +114,6 @@ var resizeImageValue = function () {
   resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value, 10) + ')';
 };
 resizeControl.addEventListener('click', function (event) {
-  console.log(event.target.classList[event.target.classList.length - 1]);
   if (event.target.classList[event.target.classList.length - 1] === 'upload-resize-controls-button-dec') {
     if (parseInt(resizeValue.value, 10) > parseInt(25, 10)) {
       resizeValue.value = parseInt(resizeValue.value, 10) - parseInt(25, 10) + '%';
