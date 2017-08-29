@@ -95,7 +95,6 @@ var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
 var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
 var hashtag = formSelect.querySelector('.upload-form-hashtags');
-var submitButton = formSelect.querySelector('#upload-submit');
 var closeFormFrame = function () {
   formFrame.classList.add('hidden');
   uploadFileWrapper.classList.remove('hidden');
