@@ -88,9 +88,8 @@ var formFrame = formSelect.querySelector('.upload-overlay');
 var formFrameCancel = formSelect.querySelector('.upload-form-cancel');
 var formDescr = formSelect.querySelector('.upload-form-description');
 var resizeImage = formSelect.querySelector('.effect-image-preview');
+var resizeControl = formSelect.querySelector('.upload-resize-controls');
 var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
-var resizeValueStep = 25;
-var resizeValueMax = 100;
 var resizeDec = formSelect.querySelector('.upload-resize-controls-button-dec');
 var resizeInc = formSelect.querySelector('.upload-resize-controls-button-inc');
 var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
@@ -116,21 +115,23 @@ document.addEventListener('keydown', function (evt) {
 var resizeImageValue = function () {
   resizeImage.style.transform = 'scale' + '(0.' + parseInt(resizeValue.value, 10) + ')';
 };
-resizeDec.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value, 10) > parseInt(resizeValueStep, 10)) {
-    resizeValue.value = parseInt(resizeValue.value, 10) - parseInt(25, 10) + '%';
-    resizeImageValue();
-  }
-});
-resizeInc.addEventListener('click', function (evt) {
-  if (parseInt(resizeValue.value, 10) < parseInt(resizeValueMax, 10)) {
-    resizeValue.value = parseInt(resizeValue.value, 10) + parseInt(resizeValueStep, 10) + '%';
-    resizeImageValue();
-    if (parseInt(resizeValue.value, 10) === parseInt(resizeValueMax, 10)) {
-      resizeImage.style.transform = 'scale(1)';
+resizeControl.addEventListener('click', function (event) {
+  console.log(event.target.classList[event.target.classList.length - 1]);
+  if (event.target.classList[event.target.classList.length - 1] === 'upload-resize-controls-button-dec') {
+    if (parseInt(resizeValue.value, 10) > parseInt(25, 10)) {
+      resizeValue.value = parseInt(resizeValue.value, 10) - parseInt(25, 10) + '%';
+      resizeImageValue();
+    }
+  } else if (event.target.classList[event.target.classList.length - 1] === 'upload-resize-controls-button-inc') {
+    if (parseInt(resizeValue.value, 10) < parseInt(100, 10)) {
+      resizeValue.value = parseInt(resizeValue.value, 10) + parseInt(25, 10) + '%';
+      resizeImageValue();
+      if (parseInt(resizeValue.value, 10) === parseInt(100, 10)) {
+        resizeImage.style.transform = 'scale(1)';
+      }
     }
   }
-});
+}, true);
 checkboxContainer.addEventListener('click', function (event) {
   if (event.target.name === 'effect') {
     var str = event.target.id;
@@ -138,13 +139,13 @@ checkboxContainer.addEventListener('click', function (event) {
     resizeImage.classList.remove(resizeImage.classList[1]);
     resizeImage.classList.add(str);
   }
-});
+}, true);
 formDescr.addEventListener('submit', function (evt) {
+  if (!formDescr.validity.valid) {
+    formDescr.style.borderColor = 'red';
+  }
+  if (!hashtag.validity.valid) {
+    hashtag.style.borderColor = 'red';
+  }
   formSelect.reset();
-});
-if (!formDescr.validity.valid) {
-  formDescr.style.borderColor = 'red';
-}
-if (!hashtag.validity.valid) {
-  hashtag.style.borderColor = 'red';
-}
+}, true);
