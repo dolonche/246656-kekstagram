@@ -11,6 +11,11 @@
   var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
   var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
   var hashtag = formSelect.querySelector('.upload-form-hashtags');
+  var effectNone = document.querySelector('#upload-effect-none');
+  var effectChrome = document.querySelector('#upload-effect-chrome');
+  var effectContainer = document.querySelector('.upload-effect-level');
+  var effectPin = document.querySelector('.upload-effect-level-pin');
+  var effectLevel = document.querySelector('.upload-effect-level-val');
   var closeFormFrame = function () {
     formFrame.classList.add('hidden');
     uploadFileWrapper.classList.remove('hidden');
@@ -48,14 +53,68 @@
       }
     }
   }, true);
+  effectContainer.style.display = 'none';
   checkboxContainer.addEventListener('click', function (event) {
     if (event.target.name === 'effect') {
+      effectPin.style.left = '20%';
+      effectLevel.style.width = '20%';
       var str = event.target.id;
       str = str.substr(7);
       resizeImage.classList.remove(resizeImage.classList[1]);
       resizeImage.classList.add(str);
     }
+    if (event.target.value === 'none') {
+      effectContainer.style.display = 'none';
+    } else {
+      effectContainer.style.display = 'block';
+    }
   }, true);
+  effectPin.addEventListener('mousedown', function (evt) {
+    evt.preventDefault;
+    var x = evt.clientX;
+    var onMouseMove = function (moveEvt) {
+      if (effectPin.offsetLeft <= 456 && effectPin.offsetLeft >= 0) {
+        moveEvt.preventDefault();
+        var shiftX = x - moveEvt.clientX;
+        x = moveEvt.clientX;
+        effectPin.style.left = (effectPin.offsetLeft - shiftX) + 'px';
+        effectLevel.style.width = (effectPin.offsetLeft - shiftX) + 'px';
+        if (effectPin.offsetLeft - shiftX >= 456) {
+          effectPin.style.left = 455 + 'px';
+        }
+        if (effectPin.offsetLeft - shiftX <= 0) {
+          effectPin.style.left = 1 + 'px';
+        }
+        var effectType;
+        switch (resizeImage.classList[1]) {
+          case 'effect-chrome':
+            resizeImage.style.filter = 'grayscale(' + ((effectPin.offsetLeft - shiftX) / 456) + ')';
+            break;
+          case 'effect-sepia':
+            resizeImage.style.filter = 'sepia(' + ((effectPin.offsetLeft - shiftX) / 456) + ')';
+            break;
+          case 'effect-marvin':
+            resizeImage.style.filter = 'invert(' + ((effectPin.offsetLeft - shiftX) / 4.56) + '%)';
+            break;
+          case 'effect-phobos':
+            resizeImage.style.filter = 'blur(' + ((effectPin.offsetLeft - shiftX) / 152) + 'px)';
+            break;
+          case 'effect-heat':
+            resizeImage.style.filter = 'brightness(' + ((effectPin.offsetLeft - shiftX) / 152) + ')';
+            break;
+        }
+      }
+    }
+    var onMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
   formDescr.addEventListener('submit', function (evt) {
     if (!formDescr.validity.valid) {
       formDescr.style.borderColor = 'red';

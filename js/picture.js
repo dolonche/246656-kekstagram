@@ -3,14 +3,14 @@
   var picturesList = document.querySelector('.pictures');
   var fragment = document.createDocumentFragment();
   var descr = window.data.picData();
-  var renderPictureElement = function (descr) {
+  var renderPictureElement = function (descrItem) {
     var pictureElement = window.data.picturesTemplate.cloneNode(true);
     var pictureImg = pictureElement.querySelector('.picture img');
     var pictureComments = pictureElement.querySelector('.picture-comments');
     var pictureLikes = pictureElement.querySelector('.picture-likes');
-    pictureImg.src = descr.url;
-    pictureComments.textContent = descr.comments;
-    pictureLikes.textContent = descr.likes;
+    pictureImg.src = descrItem.url;
+    pictureComments.textContent = descrItem.comments;
+    pictureLikes.textContent = descrItem.likes;
     return pictureElement;
   };
 
