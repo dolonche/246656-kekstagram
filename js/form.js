@@ -11,8 +11,6 @@
   var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
   var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
   var hashtag = formSelect.querySelector('.upload-form-hashtags');
-  var effectNone = document.querySelector('#upload-effect-none');
-  var effectChrome = document.querySelector('#upload-effect-chrome');
   var effectContainer = document.querySelector('.upload-effect-level');
   var effectPin = document.querySelector('.upload-effect-level-pin');
   var effectLevel = document.querySelector('.upload-effect-level-val');
@@ -85,7 +83,6 @@
         if (effectPin.offsetLeft - shiftX <= 0) {
           effectPin.style.left = 1 + 'px';
         }
-        var effectType;
         switch (resizeImage.classList[1]) {
           case 'effect-chrome':
             resizeImage.style.filter = 'grayscale(' + ((effectPin.offsetLeft - shiftX) / 456) + ')';
@@ -104,10 +101,9 @@
             break;
         }
       }
-    }
+    };
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
-
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
