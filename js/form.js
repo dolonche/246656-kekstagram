@@ -11,9 +11,9 @@
   var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
   var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
   var hashtag = formSelect.querySelector('.upload-form-hashtags');
-  var effectContainer = document.querySelector('.upload-effect-level');
-  var effectPin = document.querySelector('.upload-effect-level-pin');
-  var effectLevel = document.querySelector('.upload-effect-level-val');
+  var effectContainer = formSelect.querySelector('.upload-effect-level');
+  var effectPin = formSelect.querySelector('.upload-effect-level-pin');
+  var effectLevel = formSelect.querySelector('.upload-effect-level-val');
   var closeFormFrame = function () {
     formFrame.classList.add('hidden');
     uploadFileWrapper.classList.remove('hidden');
@@ -69,7 +69,7 @@
     }
   }, true);
   effectPin.addEventListener('mousedown', function (evt) {
-    evt.preventDefault;
+    evt.preventDefault();
     var x = evt.clientX;
     var onMouseMove = function (moveEvt) {
       if (effectPin.offsetLeft <= 456 && effectPin.offsetLeft >= 0) {
