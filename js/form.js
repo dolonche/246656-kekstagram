@@ -32,7 +32,7 @@
         resizeImage.style.filter = 'brightness(' + ((shift) / 152) + ')';
         break;
     }
-  }
+  };
   var closeFormFrame = function () {
     formFrame.classList.add('hidden');
     uploadFileWrapper.classList.remove('hidden');
