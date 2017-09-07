@@ -56,7 +56,23 @@
     if (event.target.name === 'effect') {
       effectPin.style.left = '20%';
       effectLevel.style.width = '20%';
-      resizeImage.style.filter = '';
+      switch (resizeImage.classList[1]) {
+        case 'effect-chrome':
+          resizeImage.style.filter = 'grayscale(0.2)';
+          break;
+        case 'effect-sepia':
+          resizeImage.style.filter = 'sepia(0.2)';
+          break;
+        case 'effect-marvin':
+          resizeImage.style.filter = 'inver(20%)';
+          break;
+        case 'effect-phobos':
+          resizeImage.style.filter = 'blur(0.6px)';
+          break;
+        case 'effect-heat':
+          resizeImage.style.filter = 'brightness(0.6)';
+          break;
+      }
       var str = event.target.id;
       str = str.substr(7);
       resizeImage.classList.remove(resizeImage.classList[1]);
