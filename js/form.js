@@ -14,6 +14,25 @@
   var effectContainer = formSelect.querySelector('.upload-effect-level');
   var effectPin = formSelect.querySelector('.upload-effect-level-pin');
   var effectLevel = formSelect.querySelector('.upload-effect-level-val');
+  var filterValue = function (shift) {
+    switch (resizeImage.classList[1]) {
+      case 'effect-chrome':
+        resizeImage.style.filter = 'grayscale(' + ((shift) / 456) + ')';
+        break;
+      case 'effect-sepia':
+        resizeImage.style.filter = 'sepia(' + ((shift) / 456) + ')';
+        break;
+      case 'effect-marvin':
+        resizeImage.style.filter = 'invert(' + ((shift) / 4.56) + '%)';
+        break;
+      case 'effect-phobos':
+        resizeImage.style.filter = 'blur(' + ((shift) / 152) + 'px)';
+        break;
+      case 'effect-heat':
+        resizeImage.style.filter = 'brightness(' + ((shift) / 152) + ')';
+        break;
+    }
+  }
   var closeFormFrame = function () {
     formFrame.classList.add('hidden');
     uploadFileWrapper.classList.remove('hidden');
@@ -56,27 +75,11 @@
     if (event.target.name === 'effect') {
       effectPin.style.left = '20%';
       effectLevel.style.width = '20%';
-      switch (resizeImage.classList[1]) {
-        case 'effect-chrome':
-          resizeImage.style.filter = 'grayscale(0.2)';
-          break;
-        case 'effect-sepia':
-          resizeImage.style.filter = 'sepia(0.2)';
-          break;
-        case 'effect-marvin':
-          resizeImage.style.filter = 'inver(20%)';
-          break;
-        case 'effect-phobos':
-          resizeImage.style.filter = 'blur(0.6px)';
-          break;
-        case 'effect-heat':
-          resizeImage.style.filter = 'brightness(0.6)';
-          break;
-      }
       var str = event.target.id;
       str = str.substr(7);
       resizeImage.classList.remove(resizeImage.classList[1]);
       resizeImage.classList.add(str);
+      filterValue(95);
     }
     if (event.target.value === 'none') {
       effectContainer.style.display = 'none';
@@ -100,23 +103,7 @@
         if (effectPin.offsetLeft - shiftX <= 0) {
           effectPin.style.left = 1 + 'px';
         }
-        switch (resizeImage.classList[1]) {
-          case 'effect-chrome':
-            resizeImage.style.filter = 'grayscale(' + ((effectPin.offsetLeft - shiftX) / 456) + ')';
-            break;
-          case 'effect-sepia':
-            resizeImage.style.filter = 'sepia(' + ((effectPin.offsetLeft - shiftX) / 456) + ')';
-            break;
-          case 'effect-marvin':
-            resizeImage.style.filter = 'invert(' + ((effectPin.offsetLeft - shiftX) / 4.56) + '%)';
-            break;
-          case 'effect-phobos':
-            resizeImage.style.filter = 'blur(' + ((effectPin.offsetLeft - shiftX) / 152) + 'px)';
-            break;
-          case 'effect-heat':
-            resizeImage.style.filter = 'brightness(' + ((effectPin.offsetLeft - shiftX) / 152) + ')';
-            break;
-        }
+        filterValue(effectPin.offsetLeft - shiftX);
       }
     };
     var onMouseUp = function (upEvt) {
