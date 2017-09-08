@@ -79,7 +79,7 @@
       str = str.substr(7);
       resizeImage.classList.remove(resizeImage.classList[1]);
       resizeImage.classList.add(str);
-      filterValue(95);
+      filterValue(91.2);
     }
     if (event.target.value === 'none') {
       effectContainer.style.display = 'none';
