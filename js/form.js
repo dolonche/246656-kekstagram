@@ -38,8 +38,8 @@
       effectLevel.style.width = '20%';
       var str = event.target.id;
       str = str.substr(7);
-      resizeImage.classList.remove(resizeImage.classList[1]);
-      resizeImage.classList.add(str);
+      window.resizeImage.classList.remove(window.resizeImage.classList[1]);
+      window.resizeImage.classList.add(str);
       window.filterValue(91.2);
     }
     if (event.target.value === 'none') {
