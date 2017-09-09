@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-  window.formSelect = document.querySelector('#upload-select-image');
+  var formSelect = document.querySelector('#upload-select-image');
   var uploadFile = formSelect.querySelector('#upload-file');
   var uploadFileWrapper = formSelect.querySelector('.upload-image');
   var formFrame = formSelect.querySelector('.upload-overlay');

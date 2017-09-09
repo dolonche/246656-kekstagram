@@ -1,3 +1,4 @@
+'use strict';
 (function () {
   window.filterValue = function (shift) {
     switch (window.resizeImage.classList[1]) {
