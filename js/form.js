@@ -6,12 +6,13 @@
   var formFrame = formSelect.querySelector('.upload-overlay');
   var formFrameCancel = formSelect.querySelector('.upload-form-cancel');
   var formDescr = formSelect.querySelector('.upload-form-description');
-  window.resizeImage = formSelect.querySelector('.effect-image-preview');
+  var resizeImage = formSelect.querySelector('.effect-image-preview');
   var checkboxContainer = formSelect.querySelector('.upload-effect-controls');
   var hashtag = formSelect.querySelector('.upload-form-hashtags');
   var effectContainer = formSelect.querySelector('.upload-effect-level');
   var effectPin = formSelect.querySelector('.upload-effect-level-pin');
   var effectLevel = formSelect.querySelector('.upload-effect-level-val');
+  var resizeValue = formSelect.querySelector('.upload-resize-controls-value');
   var closeFormFrame = function () {
     formFrame.classList.add('hidden');
     uploadFileWrapper.classList.remove('hidden');
@@ -30,7 +31,7 @@
       }
     }
   });
-  window.scaleValue();
+  window.initializeScale(resizeValue, resizeImage);
   effectContainer.style.display = 'none';
   checkboxContainer.addEventListener('click', function (event) {
     if (event.target.name === 'effect') {
@@ -38,9 +39,9 @@
       effectLevel.style.width = '20%';
       var str = event.target.id;
       str = str.substr(7);
-      window.resizeImage.classList.remove(window.resizeImage.classList[1]);
-      window.resizeImage.classList.add(str);
-      window.filterValue(91.2);
+      resizeImage.classList.remove(resizeImage.classList[1]);
+      resizeImage.classList.add(str);
+      window.initializeFilters(resizeImage, 91.2);
     }
     if (event.target.value === 'none') {
       effectContainer.style.display = 'none';
@@ -64,7 +65,7 @@
         if (effectPin.offsetLeft - shiftX <= 0) {
           effectPin.style.left = 1 + 'px';
         }
-        window.filterValue(effectPin.offsetLeft - shiftX);
+        window.initializeFilters(resizeImage, effectPin.offsetLeft - shiftX);
       }
     };
     var onMouseUp = function (upEvt) {
